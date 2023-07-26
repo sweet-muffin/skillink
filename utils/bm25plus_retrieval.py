@@ -31,7 +31,7 @@ class BM25PlusRetriever:
     def __init__(
         self,
         model_name_or_path: Optional[str] = "klue/bert-base",
-        data_path: Optional[str] = "./data/",
+        data_path: Optional[str] = "data",
         context_name: Optional[str] = "lesson_info.csv",
         retrieval_split=False,
     ) -> None:
@@ -49,7 +49,7 @@ class BM25PlusRetriever:
         Summary:
             Passage 파일을 불러오고 BM25Plus를 선언하는 기능을 합니다.
         """
-
+        BASE_PATH = os.path.dirname(os.path.abspath(__file__))
         self.data_path = data_path
         self.tokenizer = AutoTokenizer.from_pretrained(
             model_name_or_path
@@ -59,11 +59,11 @@ class BM25PlusRetriever:
         self.tokenized_contexts = None
         self.bm25plus = None
         self.retrieval_split = retrieval_split
-        context_path = os.path.join(data_path, context_name)
+        context_path = os.path.join(BASE_PATH, data_path, context_name)
 
         context_name = context_name.split(".")[0]
         tokenized_summary_path = os.path.join(
-            data_path, context_name + "_tokenized.bin"
+            BASE_PATH, data_path, context_name + "_tokenized.bin"
         )
         # print(
         #     f"context path:{context_path}, tokenized context path: {tokenized_summary_path}"
@@ -216,15 +216,17 @@ if __name__ == "__main__":
     retriever = BM25PlusRetriever()
     text = """
     {
-    "can_do": {
-    "파이썬": "중"
-    },
     "to_do": [
-    "데이터 분석 라이브러리 (예: Pandas, NumPy 등)",
-    "데이터 시각화 라이브러리 (예: Matplotlib, Seaborn 등)",
-    "데이터베이스 기초 (예: SQL)",
-    "통계학 기초",
-    "머신러닝 기초 (예: Scikit-learn 등)"
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "웹 디자인 기초",
+    "반응형 웹 디자인",
+    "웹 접근성",
+    "웹 호스팅",
+    "버전 관리 시스템(Git)",
+    "프론트엔드 프레임워크(예: React, Vue.js)",
+    "백엔드 기초(예: Node.js, Django, Ruby on Rails)"
     ]
     }
     """
