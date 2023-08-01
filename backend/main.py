@@ -9,6 +9,7 @@ from utils.bm25plus_retrieval import BM25PlusRetriever
 import openai
 from collections import defaultdict
 from model import *
+import requests
 
 
 load_dotenv()
@@ -167,6 +168,35 @@ def get_curriulum(
 
     return response_dict
 
+
+@app.get("/api/wanted/categories")
+def get_categories():
+    return requests.get(f'{os.getenv("WANTED_ENDPOINT")}/v1/tags/categories',
+             headers={
+                 "Accept": "*/*",
+                 "wanted-client-id": os.getenv("WANTED_ID"),
+                 "wanted-client-secret": os.getenv("WANTED_SECRET"),
+             }).json()
+
+
+@app.get("/api/wanted/positions")
+def get_positions(curJobID, curOffset):
+    return requests.get(f'{os.getenv("WANTED_ENDPOINT")}/v1/jobs?category_tags={curJobID}&sort=job.popularity_order&offset={curOffset}&limit=48',
+             headers={
+                 "Accept": "*/*",
+                 "wanted-client-id": os.getenv("WANTED_ID"),
+                 "wanted-client-secret": os.getenv("WANTED_SECRET"),
+             }).json()
+
+
+@app.get("/api/wanted/job/{positionID}")
+def get_jobs(positionID):
+    return requests.get(f'{os.getenv("WANTED_ENDPOINT")}/v1/jobs/{positionID}',
+             headers={
+                 "Accept": "*/*",
+                 "wanted-client-id": os.getenv("WANTED_ID"),
+                 "wanted-client-secret": os.getenv("WANTED_SECRET"),
+             }).json()
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)

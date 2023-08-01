@@ -1,4 +1,3 @@
-*.json
 *.csv
 *.jsonl
 *.bin
@@ -27,7 +26,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .env
-*.json
+backend/data
+backend/*.json
 yarn.lock
 *.sh
 
@@ -36,3 +36,4 @@ yarn.lock
 *.sh
 
 
+frontend/src/apis/result_response.json
