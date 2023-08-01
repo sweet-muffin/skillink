@@ -9,6 +9,7 @@ import * as CT from "@assets/customTypes";
 import { isMobile } from "@assets/mobile";
 import JobModal from "@blocks/JobModal";
 import IntroModal from "@blocks/IntroModal";
+import { createBrowserHistory } from "history";
 
 const JobPage = () => {
     const navigate = useNavigate();
@@ -20,6 +21,10 @@ const JobPage = () => {
     const [positionModalOn, setPositionModal] = useState(true);
     const [introInfo, setIntroInfo] = useState<CT.IntroType | null>(null);
     const [moreLoading, setMoreLoading] = useState(false);
+    const [selectedCompany, setSelectedCompany] = useState(-1);
+    const [jobTitle, setJobTitle] = useState<string | null>(null);
+
+    const history = createBrowserHistory();
 
     useEffect(() => {
         const FetchData = async () => {
@@ -41,6 +46,17 @@ const JobPage = () => {
         };
         FetchData();
     }, []);
+
+    useEffect(() => {
+        const unlistenHistoryEvent = history.listen(({ action }) => {
+            if (action === "POP") {
+                if (introInfo) {
+                    ModalBackHander();
+                }
+            }
+        });
+        return unlistenHistoryEvent;
+    }, [history, introInfo]);
 
     const FetchPositionData = async () => {
         setMoreLoading(true);
@@ -65,8 +81,9 @@ const JobPage = () => {
                 // console.log(error);
             });
     };
-    const JobSelectHander = (jobID: number) => {
+    const JobSelectHander = (jobID: number, jobTitle: string) => {
         setJobID(jobID);
+        setJobTitle(jobTitle);
     };
 
     const JobNextHandler = () => {
@@ -101,11 +118,14 @@ const JobPage = () => {
                         intro: response.data.detail.intro,
                         companyURL: response.data.company.link,
                     });
+                    history.push("/job");
+                    setSelectedCompany(-1);
                 })
                 .catch((error) => {
                     // console.log(error);
                 });
         };
+        setSelectedCompany(positionID);
         !moreLoading && FetchIntroData();
     };
 
@@ -116,14 +136,27 @@ const JobPage = () => {
     }
 
     const ModalOffHander = () => {
+        // history.go(-1);
+        setIntroInfo(null);
+        setRequirements(null);
+    };
+
+    const ModalBackHander = () => {
         setIntroInfo(null);
         setRequirements(null);
     };
 
     const NextPageHandler = () => {
+        console.log(requirements);
         window.localStorage.setItem("requirements", requirements!);
         document.body.style.overflow = "unset";
+        // history.push("/job");
         navigate("/result");
+    };
+
+    const JobChoiseAgainHandler = () => {
+        setPositionModal(true);
+        setPositionList([]);
     };
 
     return (
@@ -152,10 +185,21 @@ const JobPage = () => {
             <HeaderBlock />
             {positionList.length !== 0 ? (
                 <Wrapper>
+                    <TopPositionDiv>
+                        <TopPositionText onClick={JobChoiseAgainHandler}>
+                            {jobTitle}&nbsp;&nbsp;
+                            <SmallText>X</SmallText>
+                        </TopPositionText>
+                    </TopPositionDiv>
                     <PositionWrapper>
                         {positionList.map((position) => (
                             <PositionElement key={position.id}>
                                 <PositionIMG
+                                    isselected={
+                                        selectedCompany === position.id
+                                            ? "true"
+                                            : "false"
+                                    }
                                     onClick={() =>
                                         PositionSelectHandler(
                                             position.id,
@@ -190,7 +234,7 @@ const JobPage = () => {
                     <FooterBlock />
                 </Wrapper>
             ) : (
-                <Spinner />
+                !positionModalOn && <Spinner />
             )}
         </>
     );
@@ -208,10 +252,9 @@ const Wrapper = styled.div`
 const PositionWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;
-    width: 1200rem;
     min-width: ${isMobile() ? "0rem" : "800rem"};
     width: ${isMobile() ? "100vw" : "62.5vw"};
-    margin-top: ${isMobile() ? "0rem" : "113rem"};
+    /* margin-top: ${isMobile() ? "0rem" : "113rem"}; */
     justify-content: center;
 `;
 
@@ -225,13 +268,23 @@ const PositionElement = styled.div`
     align-items: center;
 `;
 
-const PositionIMG = styled.img`
+type IMGType = {
+    isselected: string;
+};
+
+const PositionIMG = styled.img<IMGType>`
     width: ${isMobile() ? "170rem" : "300rem"};
     height: ${isMobile() ? "124rem" : "218rem"};
     object-fit: cover;
     border-radius: 20rem 20rem 20rem 0px;
     margin-bottom: 11rem;
     cursor: pointer;
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    &:hover {
+        transform: translate(-4%, -4%);
+        transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    opacity: ${(props) => (props.isselected === "true" ? "0.3" : "1")};
 `;
 
 const PositionName = styled.span`
@@ -298,4 +351,35 @@ const MoreButton = styled.div<{
     margin-bottom: 50rem;
     cursor: pointer;
     opacity: ${(props) => (props.isloading === "true" ? "0.3" : "1")};
+`;
+
+const TopPositionDiv = styled.div`
+    margin-top: ${isMobile() ? "18rem" : "18rem"};
+    min-width: ${isMobile() ? "0rem" : "800rem"};
+    width: ${isMobile() ? "100vw" : "62.5vw"};
+    text-align: left;
+    display: flex;
+`;
+
+const TopPositionText = styled.div`
+    padding: 0 20rem;
+    height: ${isMobile() ? "50rem" : "61rem"};
+    flex-shrink: 0;
+    border-radius: ${isMobile() ? "15rem" : "20rem"};
+    background-color: #6bddaa;
+    margin: ${isMobile() ? "0 16rem" : "0 45rem"};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: Pretendard;
+    font-size: ${isMobile() ? "20rem" : "25rem"};
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+`;
+
+const SmallText = styled.span`
+    font-size: ${isMobile() ? "15rem" : "18rem"};
 `;

@@ -32,12 +32,23 @@ export const startEnd = keyframes`
 
 export const start = keyframes`
 0%{
-  transform: translate(0,80%);
+  transform: translate(0,20%);
   opacity: 0;
 }
 100%{
   transform: translate(0%,0);
   opacity: 1;
+}
+`;
+
+export const buttonstart = keyframes`
+0%{
+  transform: translate(0,20%);
+  opacity: 0;
+}
+100%{
+  transform: translate(0%,0);
+  opacity: 0.3;
 }
 `;
 

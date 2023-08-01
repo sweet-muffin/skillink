@@ -80,7 +80,7 @@ const CenterWrapper = styled.div`
     }
     /* margin-top: 170rem; */
     ${css`
-        animation: ${KF.start} 0.8s 0.4s 1 both;
+        animation: ${KF.start} 0.8s 0.2s 1 both;
     `}
 `;
 
