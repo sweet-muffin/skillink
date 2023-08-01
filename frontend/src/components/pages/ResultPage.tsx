@@ -5,7 +5,7 @@ import MobileBackgroundSvg from "@assets/images/end_back_mo.svg";
 import { Text } from "@nextui-org/react";
 import ItemBox from "@blocks/CurriculumBlock";
 import FooterBlock from "@blocks/FooterBlock";
-import resultDummy from "@apis/result_response.json";
+// import resultDummy from "@apis/result_response.json";
 import axios from "axios";
 import ColorButtonBlock from "@blocks/ColorButtonBlock";
 import HeaderBlock from "@blocks/HeaderBlock";
@@ -36,7 +36,7 @@ const ResultPage = () => {
                     console.log(error);
                 });
         };
-        FetchData();
+        window.localStorage.getItem("requirements") && FetchData();
     }, []);
 
     return (
