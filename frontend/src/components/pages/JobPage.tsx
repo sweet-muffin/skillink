@@ -25,7 +25,7 @@ const JobPage = () => {
         const FetchData = async () => {
             await axios({
                 method: "get",
-                url: `/v1/tags/categories`,
+                url: `/api/wanted/categories`,
                 headers: {
                     accept: "application/json",
                     "wanted-client-id": process.env.REACT_APP_WANTED_ID,
@@ -46,7 +46,7 @@ const JobPage = () => {
         setMoreLoading(true);
         await axios({
             method: "get",
-            url: `/v1/jobs?category_tags=${curJobID}&sort=job.popularity_order&offset=${curOffset}&limit=48`,
+            url: `/api/wanted/positions?curJobID=${curJobID}&curOffset=${curOffset}`,
             headers: {
                 accept: "application/json",
                 "wanted-client-id": process.env.REACT_APP_WANTED_ID,
@@ -84,7 +84,7 @@ const JobPage = () => {
         const FetchIntroData = async () => {
             await axios({
                 method: "get",
-                url: `/v1/jobs/${positionID}`,
+                url: `/api/wanted/job/${positionID}`,
                 headers: {
                     accept: "application/json",
                     "wanted-client-id": process.env.REACT_APP_WANTED_ID,
