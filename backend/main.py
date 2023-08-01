@@ -5,17 +5,18 @@ from dotenv import load_dotenv
 import pymysql
 import os
 import uvicorn
-from bm25plus_retrieval import BM25PlusRetriever
+from utils.bm25plus_retrieval import BM25PlusRetriever
 import openai
 from collections import defaultdict
 from model import *
 import requests
+import ast
 
 
 load_dotenv()
 openai.organization = os.getenv("OPENAI_API_ORG")
 openai.api_key = os.getenv("OPENAI_API_KEY")
-
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 app = FastAPI()
 retriever = BM25PlusRetriever()
@@ -87,24 +88,37 @@ async def get_all_lessons() -> ReturnItem:
     return {"lessons": lessons}
 
 
-def get_lesson_with_title(title: str) -> LessonPartialItem:
+def get_lesson_info(title_list: str):
+    mod_titles = []
+    for idx, title in enumerate(title_list):
+        mod_titles.append(f"'{title}'")
+    title_text = ", ".join(mod_titles)
+
     conn = create_conn()
     curs = conn.cursor()
     curs.execute(
-        "SELECT descriptions, url, image_url FROM lessons WHERE title = %s", (title,)
+        f"SELECT title, descriptions, url, image_url FROM lessons WHERE title IN ({title_text})"
     )
     results = curs.fetchall()
     conn.close()
 
-    row = results[0]
-    return_data = {"title": title, "descriptions": row[0], "url": row[1], "image_url": row[2]}
+    results = list(results)
+    results.sort(key=lambda x: title_list.index(x[0]))
 
+    return_data = {}
+    for idx, row in enumerate(results):
+        return_data[f"lesson{idx+1}"] = {
+            "title": row[0],
+            "descriptions": row[1],
+            "url": row[2],
+            "image_url": row[3],
+        }
     return return_data
 
 
 # chatGPT에 필요한 기술스택과 지식 질문
 @app.post("/api/chat/stack")
-def get_stack_completion(prompt:UserInputItem, model="gpt-3.5-turbo"):
+def get_stack_completion(prompt: UserInputItem, model="gpt-3.5-turbo"):
     messages = [
         {
             "role": "system",
@@ -147,12 +161,9 @@ def get_order_completion(prompt, model="gpt-3.5-turbo"):
 
 
 @app.post("/api/chat/curriculum")
-def get_curriulum(
-    input: CurriculumInputItem, model="gpt-3.5-turbo"
-) -> CurriculumOutputputItem:
-    
+def get_curriulum(input: CurriculumInputItem, model="gpt-3.5-turbo"):
     # 강의 제목 Retrieve
-    lesson_title_list_string = get_lesson_title_list(input.user_want)
+    lesson_title_list_string = get_lesson_title_list(input.user_want[:100])
 
     # 강의 순서 구하기
     response_string = get_order_completion(lesson_title_list_string, model)
@@ -162,41 +173,45 @@ def get_curriulum(
     lectures_list = response_dict["lectures"]
 
     # 제목으로 강의 정보 불러오기
-    response_dict = defaultdict()
-    for idx, lecture_title in enumerate(lectures_list):
-        response_dict[f"lesson{idx+1}"] = get_lesson_with_title(lecture_title)
-
+    response_dict = get_lesson_info(lectures_list)
     return response_dict
 
 
 @app.get("/api/wanted/categories")
 def get_categories():
-    return requests.get(f'{os.getenv("WANTED_ENDPOINT")}/v1/tags/categories',
-             headers={
-                 "Accept": "*/*",
-                 "wanted-client-id": os.getenv("WANTED_ID"),
-                 "wanted-client-secret": os.getenv("WANTED_SECRET"),
-             }).json()
+    return requests.get(
+        f'{os.getenv("WANTED_ENDPOINT")}/v1/tags/categories',
+        headers={
+            "Accept": "*/*",
+            "wanted-client-id": os.getenv("WANTED_ID"),
+            "wanted-client-secret": os.getenv("WANTED_SECRET"),
+        },
+    ).json()
 
 
 @app.get("/api/wanted/positions")
 def get_positions(curJobID, curOffset):
-    return requests.get(f'{os.getenv("WANTED_ENDPOINT")}/v1/jobs?category_tags={curJobID}&sort=job.popularity_order&offset={curOffset}&limit=48',
-             headers={
-                 "Accept": "*/*",
-                 "wanted-client-id": os.getenv("WANTED_ID"),
-                 "wanted-client-secret": os.getenv("WANTED_SECRET"),
-             }).json()
+    return requests.get(
+        f'{os.getenv("WANTED_ENDPOINT")}/v1/jobs?category_tags={curJobID}&sort=job.popularity_order&offset={curOffset}&limit=48',
+        headers={
+            "Accept": "*/*",
+            "wanted-client-id": os.getenv("WANTED_ID"),
+            "wanted-client-secret": os.getenv("WANTED_SECRET"),
+        },
+    ).json()
 
 
 @app.get("/api/wanted/job/{positionID}")
 def get_jobs(positionID):
-    return requests.get(f'{os.getenv("WANTED_ENDPOINT")}/v1/jobs/{positionID}',
-             headers={
-                 "Accept": "*/*",
-                 "wanted-client-id": os.getenv("WANTED_ID"),
-                 "wanted-client-secret": os.getenv("WANTED_SECRET"),
-             }).json()
+    return requests.get(
+        f'{os.getenv("WANTED_ENDPOINT")}/v1/jobs/{positionID}',
+        headers={
+            "Accept": "*/*",
+            "wanted-client-id": os.getenv("WANTED_ID"),
+            "wanted-client-secret": os.getenv("WANTED_SECRET"),
+        },
+    ).json()
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8080)
