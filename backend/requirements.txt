@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+rank-bm25
+tqdm
+transformers
+openai
+pymysql
+python-dotenv

@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+    skillink-backend:
+        container_name: backend
+        build:
+            context: ./backend/
+            args:
+                - MYSQL_HOST=${MYSQL_HOST}
+                - MYSQL_USER=${MYSQL_USER}
+                - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+                - MYSQL_DB=${MYSQL_DB}
+                - OPENAI_API_KEY=${OPENAI_API_KEY}
+                - MYSQL_CHARSET=${MYSQL_CHARSET}
+                - OPENAI_API_ORG=${OPENAI_API_ORG}
+            dockerfile: Dockerfile
+        restart: always
+        networks:
+            - skillink-network
+
+    skillink-frontend:
+        depends_on:
+            - skillink-backend
+        container_name: frontend
+        build:
+            context: ./frontend/
+            args:
+                - REACT_APP_WANTED_ENDPOINT=${REACT_APP_WANTED_ENDPOINT}
+                - REACT_APP_WANTED_ID=${REACT_APP_WANTED_ID}
+                - REACT_APP_WANTED_SECRET=${REACT_APP_WANTED_SECRET}
+            dockerfile: Dockerfile
+        ports:
+            - "80:80"
+        restart: always
+        networks:
+            - skillink-network
+
+networks:
+    skillink-network:
+        driver: bridge

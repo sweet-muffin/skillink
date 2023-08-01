@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "Pretendard-midium";
+    font-style: normal;
+    font-weight: 500;
+    src: url("./Pretendard-Medium.otf") format("opentype");
+  }
+
+@font-face {
+    font-family: "Pretendard-regular";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./Pretendard-Regular.otf") format("opentype");
+  }
+
+@font-face {
+    font-family: "Pretendard-semibold";
+    font-style: normal;
+    font-weight: 600;
+    src: url("./Pretendard-SemiBold.otf") format("opentype");
+  }
+
+@font-face {
+    font-family: "UbuntuCondensed";
+    font-style: normal;
+    font-weight: normal;
+    src: url("./UbuntuCondensed-Regular.ttf") format("truetype");
+  }
