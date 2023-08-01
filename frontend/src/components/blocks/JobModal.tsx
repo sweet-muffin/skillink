@@ -1,12 +1,13 @@
 import * as CT from "@assets/customTypes";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { isMobile } from "@assets/mobile";
 import button_back from "@assets/images/button.svg";
+import * as KF from "@styles/keyframes";
 
 const JobModal = (props: {
     jobList: CT.JobType[] | null;
     curJobID: number;
-    JobSelectHander: (jobID: number) => void;
+    JobSelectHander: (jobID: number, jobTitle: string) => void;
     JobNextHandler: () => void;
 }) => {
     return (
@@ -18,7 +19,9 @@ const JobModal = (props: {
                         <JobItem
                             key={job.id}
                             selected={props.curJobID === job.id}
-                            onClick={() => props.JobSelectHander(job.id)}
+                            onClick={() =>
+                                props.JobSelectHander(job.id, job.title)
+                            }
                         >
                             {job.title}
                         </JobItem>
@@ -57,6 +60,9 @@ const JobModalWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     // justify-content: center;
+    ${css`
+        animation: ${KF.start} 0.8s 0.4s 1 both;
+    `}
 `;
 
 const JobModalText = styled.div`
