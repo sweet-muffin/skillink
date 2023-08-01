@@ -8,15 +8,8 @@ ARG REACT_APP_WANTED_SECRET
 WORKDIR /app
 COPY . /app
 
-
-RUN echo "REACT_APP_WANTED_ENDPOINT=${REACT_APP_WANTED_ENDPOINT}" >> .env
-RUN echo "REACT_APP_WANTED_ID=${REACT_APP_WANTED_ID}" >> .env
-RUN echo "REACT_APP_WANTED_SECRET=${REACT_APP_WANTED_SECRET}" >> .env
-
 RUN npm install
 RUN npm run build
-
-RUN rm .env
 
 FROM nginx:alpine
 
