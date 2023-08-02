@@ -195,6 +195,22 @@ def get_order_completion(prompt, model="gpt-3.5-turbo"):
     return response.choices[0].message.content
 
 
+def get_summary_completion(prompt, model="gpt-3.5-turbo"):
+    messages = [
+        {
+            "role": "system",
+            "content": "다음을 불렛 형식으로 한 줄당 18자 이내로 깔끔하게 정리해줘.",
+        },
+        {"role": "user", "content": prompt},
+    ]
+    response = openai.ChatCompletion.create(
+        model=model,
+        messages=messages,
+        temperature=0.7,
+    )
+    return response.choices[0].message.content
+
+
 # @app.post("/api/chat/curriculum")
 # def get_curriulum(input: CurriculumInputItem, model="gpt-3.5-turbo"):
 #     # 강의 제목 Retrieve
@@ -299,7 +315,11 @@ def get_curriulum_with_id(want_id: int = 0):
     user_want = result[0]
     response_dict = lesson_retrieve_with_sort(user_want)
 
-    return {"source": result[1], "lesson": response_dict, "user_want": user_want}
+    return {
+        "source": result[1],
+        "lesson": response_dict,
+        "user_want": get_summary_completion(user_want),
+    }
 
 
 if __name__ == "__main__":

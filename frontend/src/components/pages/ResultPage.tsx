@@ -227,15 +227,17 @@ const ContentTitle = styled.span`
 `;
 
 const ContentText = styled.span`
-    font-size: ${isMobile() ? "18rem" : "40rem"};
+    font-size: ${isMobile() ? "16rem" : "36rem"};
     font-family: "Pretendard-regular";
     text-align: start;
     background-color: transparent;
+    white-space: pre-line;
+    width: 90%;
 `;
 
 const ContentBox = styled.div`
-    width: ${isMobile() ? "310rem" : "912rem;"};
-    padding: ${isMobile() ? "20rem" : "50rem"};
+    width: ${isMobile() ? "310rem" : "870rem;"};
+    padding: ${isMobile() ? "20rem" : "40rem 20rem"};
     max-height: ${isMobile() ? "120rem" : "314rem"};
     border: solid 2rem ${(props) => props.theme.colors.udemy};
     border-radius: 20rem;
