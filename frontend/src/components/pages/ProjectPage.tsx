@@ -15,11 +15,13 @@ const ProjectPage = () => {
 	const [inputText, setInputText] = useState("");
 	const [isLoading, setLoading] = useState(false);
 	const [alertModal, setAlertModal] = useState(false);
+	let [inputCount, setInputCount] = useState(0);
 
 	const InputTextHandler = (e: {
 		target: { value: React.SetStateAction<string> };
 	}) => {
 		setInputText(e.target.value);
+		setInputCount(e.target.value.length);
 	};
 
 	const NextPageHandler = () => {
@@ -94,10 +96,13 @@ const ProjectPage = () => {
 						</CenterTextWrapper>
 						<InputBox
 							onKeyPress={EnterHandler}
-							maxLength={100}
+							maxLength={99}
 							onChange={InputTextHandler}
 							placeholder="난 자바스크립트만 조금 할 줄 아는 초보 개발자인데, 내 웹사이트를 제작하고 싶어."
 						/>
+						<UnderTextWrapper>
+							<NumberText>{inputCount}/100 자</NumberText>
+						</UnderTextWrapper>
 
 						<ColorButton
 							userinput={inputText}
@@ -158,7 +163,7 @@ const InputBox = styled.textarea`
 	height: ${isMobile() ? "67rem" : "100rem"};
 	border: solid 3rem ${(props) => props.theme.colors.udemy};
 	border-radius: 20rem;
-	margin: 50rem;
+	margin-top: 50rem;
 	padding: 20rem;
 	font-size: ${isMobile() ? "15rem" : "25rem"};
 	font-family: "Pretendard-regural";
@@ -196,4 +201,20 @@ const ColorButton = styled.button<ButtonType>`
 	`}
 	opacity: ${(props) => (props.userinput.length === 0 ? "0.3" : "1.0")};
 	${(props) => props.userinput.length !== 0 && "cursor: pointer;"}
+`;
+
+const UnderTextWrapper = styled.div`
+	width: ${isMobile() ? "320rem" : "1030rem"};
+	display: flex;
+	justify-content: end;
+	margin-top: 10rem;
+	margin-bottom: 50rem;
+	${css`
+		animation: ${KF.start} 0.8s 0.7s 1 both;
+	`}
+`;
+
+const NumberText = styled.span`
+	font-size: ${isMobile() ? "15rem" : "20rem"};
+	color: gray;
 `;

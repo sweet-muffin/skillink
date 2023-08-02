@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 import pymysql
 import os
 import uvicorn
-from bm25plus_retrieval import BM25PlusRetriever
+from utils.bm25plus_retrieval import BM25PlusRetriever
 import openai
 from collections import defaultdict
 from model import *
