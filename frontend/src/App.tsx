@@ -5,6 +5,7 @@ import SelectPage from "@pages/SelectPage";
 import ProjectPage from "@pages/ProjectPage";
 import JobPage from "@pages/JobPage";
 import ResultPage from "@pages/ResultPage";
+import ErrorPage from "@pages/ErrorPage";
 
 function App() {
 	return (
@@ -16,6 +17,7 @@ function App() {
 					<Route path="/project" element={<ProjectPage />}></Route>
 					<Route path="/job" element={<JobPage />}></Route>
 					<Route path="/result" element={<ResultPage />}></Route>
+					<Route path="/*" element={<ErrorPage />}></Route>
 				</Routes>
 			</BrowserRouter>
 		</div>

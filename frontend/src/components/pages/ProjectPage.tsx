@@ -41,7 +41,7 @@ const ProjectPage = () => {
 					window.localStorage.setItem("requirements", response.data);
 					window.localStorage.setItem(
 						"title",
-						"프로젝트를 위해 필요한 스택과 지식은 다음과 같습니다."
+						"프로젝트를 수행하기 위해서는 다음과 같은 스택과 지식이 필요합니다."
 					);
 					navigate("/result");
 				})

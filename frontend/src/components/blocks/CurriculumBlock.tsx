@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Diamond from "@assets/images/diamond.svg";
+import Fade from "react-reveal/Fade";
 
 const isMobile = function () {
 	const match = window.matchMedia("(pointer:coarse)");
@@ -18,38 +19,44 @@ const CurriculumBlock = (props: {
 }) => {
 	const Colors = ["", "#5689F7", "#385AE9", "#B454F6", "#983DE7", "#5027C8"];
 	return (
-		<ItemBox>
-			<StepText src={Colors[props.step]}>Step {props.step}.</StepText>
-			<ImageBox
-				src={props.image}
-				onClick={() => window.open(props.lessonURL)}
-			/>
-			<ItemTitle>{props.title}</ItemTitle>
-			<DescList>
-				<img
-					src={Diamond}
-					height={isMobile() ? "21.4rem" : "100%"}
-					alt=""
-				/>
-				<DescText>{props.desc1}</DescText>
-			</DescList>
-			<DescList>
-				<img
-					src={Diamond}
-					height={isMobile() ? "21.4rem" : "100%"}
-					alt=""
-				/>
-				<DescText>{props.desc2}</DescText>
-			</DescList>
-			<DescList>
-				<img
-					src={Diamond}
-					height={isMobile() ? "21.4rem" : "100%"}
-					alt=""
-				/>
-				<DescText>{props.desc3}</DescText>
-			</DescList>
-		</ItemBox>
+		<>
+			<Fade bottom>
+				<ItemBox>
+					<StepText src={Colors[props.step]}>
+						Step {props.step}.
+					</StepText>
+					<ImageBox
+						src={props.image}
+						onClick={() => window.open(props.lessonURL)}
+					/>
+					<ItemTitle>{props.title}</ItemTitle>
+					<DescList>
+						<img
+							src={Diamond}
+							height={isMobile() ? "21.4rem" : "100%"}
+							alt=""
+						/>
+						<DescText>{props.desc1}</DescText>
+					</DescList>
+					<DescList>
+						<img
+							src={Diamond}
+							height={isMobile() ? "21.4rem" : "100%"}
+							alt=""
+						/>
+						<DescText>{props.desc2}</DescText>
+					</DescList>
+					<DescList>
+						<img
+							src={Diamond}
+							height={isMobile() ? "21.4rem" : "100%"}
+							alt=""
+						/>
+						<DescText>{props.desc3}</DescText>
+					</DescList>
+				</ItemBox>
+			</Fade>
+		</>
 	);
 };
 
@@ -73,15 +80,6 @@ const StepText = styled.span<CardType>`
 	color: ${(props) => props.src};
 	margin-bottom: 30rem;
 `;
-
-// const ImageBox = styled.div<CardType>`
-//     border-radius: 20rem 20rem 20rem 0rem;
-//     width: ${isMobile() ? "280rem" : "500rem"};
-//     height: ${isMobile() ? "157rem" : "300rem"};
-//     background-image: url(${(props) => props.src});
-//     background-size: cover;
-//     cursor: pointer;
-// `;
 
 const ImageBox = styled.img`
 	border-radius: 20rem 20rem 20rem 0rem;
