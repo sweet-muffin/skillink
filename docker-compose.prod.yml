@@ -2,7 +2,7 @@ version: "3.7"
 services:
     skillink-backend:
         container_name: backend
-        image: ghcr.io/jlake310/skillink_backend
+        image: jykim310/skillink_backend
         restart: always
         networks:
             - skillink-network
@@ -11,7 +11,7 @@ services:
         depends_on:
             - skillink-backend
         container_name: frontend
-        image: ghcr.io/jlake310/skillink_frontend
+        image: jykim310/skillink_frontend
         ports:
             - "80:80"
         restart: always

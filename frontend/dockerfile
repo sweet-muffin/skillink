@@ -8,8 +8,8 @@ ARG REACT_APP_WANTED_SECRET
 WORKDIR /app
 COPY . /app
 
-RUN npm install
-RUN npm run build
+RUN npm install --legacy-peer-deps
+RUN npm run build 
 
 FROM nginx:alpine
 
