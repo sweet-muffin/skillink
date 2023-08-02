@@ -111,7 +111,7 @@ const MainPage = () => {
 				</ItemsWrapper>
 			</GrayContainer>
 			<Container>
-				<SubTitle>오직 두단계면 충분해요</SubTitle>
+				<SubTitle>오직 두 단계면 충분해요</SubTitle>
 				<ItemsWrapper>
 					<Fade bottom>
 						<ItemWrapper>
