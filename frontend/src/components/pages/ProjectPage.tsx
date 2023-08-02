@@ -39,10 +39,7 @@ const ProjectPage = () => {
 			})
 				.then((response) => {
 					window.localStorage.setItem("requirements", response.data);
-					window.localStorage.setItem(
-						"title",
-						"프로젝트를 수행하기 위해서는 다음과 같은 스택과 지식이 필요합니다."
-					);
+					window.localStorage.setItem("result", "true");
 					navigate("/result");
 				})
 				.catch((error) => {

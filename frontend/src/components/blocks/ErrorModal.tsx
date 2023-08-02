@@ -4,11 +4,13 @@ import Skillink from "@assets/images/logo.svg";
 
 const ErrorModal = (props: { ModalOffHander: () => void }) => {
 	return (
-		<ModalDiv>
-			<LogoImage src={Skillink} />
-			<ModalText>오류가 발생했습니다.</ModalText>
-			<OKButton onClick={props.ModalOffHander}>새로고침</OKButton>
-		</ModalDiv>
+		<ModalBackground>
+			<ModalDiv>
+				<LogoImage src={Skillink} />
+				<ModalText>오류가 발생했습니다.</ModalText>
+				<OKButton onClick={props.ModalOffHander}>새로고침</OKButton>
+			</ModalDiv>
+		</ModalBackground>
 	);
 };
 
@@ -16,6 +18,17 @@ export default ErrorModal;
 interface ImageSrc {
 	src: string;
 }
+
+const ModalBackground = styled.div`
+	position: fixed;
+	background: rgba(184, 184, 184, 0.47);
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+`;
 
 const LogoImage = styled.img<ImageSrc>`
 	src: ${(props) => props.src};
