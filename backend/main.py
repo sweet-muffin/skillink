@@ -195,29 +195,29 @@ def get_order_completion(prompt, model="gpt-3.5-turbo"):
     return response.choices[0].message.content
 
 
-@app.post("/api/chat/curriculum")
-def get_curriulum(input: CurriculumInputItem, model="gpt-3.5-turbo"):
-    # 강의 제목 Retrieve
-    response_dict = lesson_retrieve_with_sort(input.user_want)
+# @app.post("/api/chat/curriculum")
+# def get_curriulum(input: CurriculumInputItem, model="gpt-3.5-turbo"):
+#     # 강의 제목 Retrieve
+#     response_dict = lesson_retrieve_with_sort(input.user_want)
 
-    return response_dict
+#     return response_dict
 
 
-@app.post("/api/chat/curriculum_old")
-def get_curriulum_old(input: CurriculumInputItem, model="gpt-3.5-turbo"):
-    # 강의 제목 Retrieve
-    lesson_title_list_string = lesson_retrieve(input.user_want[:100])
+# @app.post("/api/chat/curriculum_old")
+# def get_curriulum_old(input: CurriculumInputItem, model="gpt-3.5-turbo"):
+#     # 강의 제목 Retrieve
+#     lesson_title_list_string = lesson_retrieve(input.user_want[:100])
 
-    # 강의 순서 구하기
-    response_string = get_order_completion(lesson_title_list_string, model)
+#     # 강의 순서 구하기
+#     response_string = get_order_completion(lesson_title_list_string, model)
 
-    # 딕셔너리 형태로 변환
-    response_dict = get_dict_from_string(response_string)
-    lectures_list = response_dict["lectures"]
+#     # 딕셔너리 형태로 변환
+#     response_dict = get_dict_from_string(response_string)
+#     lectures_list = response_dict["lectures"]
 
-    # 제목으로 강의 정보 불러오기
-    response_dict = get_lesson_info(lectures_list)
-    return response_dict
+#     # 제목으로 강의 정보 불러오기
+#     response_dict = get_lesson_info(lectures_list)
+#     return response_dict
 
 
 @app.get("/api/wanted/categories")
@@ -254,6 +254,52 @@ def get_jobs(positionID):
             "wanted-client-secret": os.getenv("WANTED_SECRET"),
         },
     ).json()
+
+
+class UserWantIn(BaseModel):
+    user_want: str
+    source: str
+
+
+@app.post("/api/user_want")
+async def post_user_want(userwant: UserWantIn):
+    conn = None
+    cursor = None
+    try:
+        conn = create_conn()
+        cursor = conn.cursor()
+        cursor.execute(
+            "insert into UserWants(user_want, source) values(%s, %s)",
+            (userwant.user_want, userwant.source),
+        )
+
+        conn.commit()
+        last_row_id = cursor.lastrowid
+    except Exception as e:
+        if conn is not None:
+            conn.rollback()  # rollback to previous state
+        raise HTTPException(status_code=500, detail="Database error")
+    finally:
+        if cursor is not None:
+            cursor.close()
+        if conn is not None:
+            conn.close()
+
+    return {"want_id": last_row_id}
+
+
+@app.get("/api/chat/curriculum")
+def get_curriulum_with_id(want_id: int = 0):
+    # 강의 제목 Retrieve
+    conn = create_conn()
+    curs = conn.cursor()
+    curs.execute(f"SELECT user_want, source FROM UserWants WHERE id = {want_id}")
+    result = curs.fetchone()
+    conn.close()
+    user_want = result[0]
+    response_dict = lesson_retrieve_with_sort(user_want)
+
+    return {"source": result[1], "lesson": response_dict}
 
 
 if __name__ == "__main__":
