@@ -20,8 +20,9 @@ const ResultPage = () => {
 	const [curriculumList, setCurriculumList] =
 		useState<CT.ResponseType | null>(null);
 	const requirements = window.localStorage.getItem("requirements");
-	const title = window.localStorage.getItem("title");
 	const [errorModalOn, setErrorModalOn] = useState(false);
+
+	const project = window.localStorage.getItem("result");
 
 	useEffect(() => {
 		const FetchData = async () => {
@@ -32,7 +33,7 @@ const ResultPage = () => {
 					accept: "application/json",
 				},
 				data: {
-					user_want: window.localStorage.getItem("requirements"),
+					// user_want: window.localStorage.getItem("requirements"),
 				},
 			})
 				.then((response) => {
@@ -87,8 +88,8 @@ const ResultPage = () => {
 								흥미진진한 학습을 시작해보세요!
 							</TitleText>
 							<ContentTitle>
-								{title
-									? title
+								{project == "true"
+									? "프로젝트를 수행하기 위해서는 다음과 같은 스택과 지식이 필요합니다."
 									: "해당 포지션에서 요구하는 능력은 다음과 같습니다."}
 							</ContentTitle>
 							<Fade bottom>
@@ -232,15 +233,14 @@ const ContentText = styled.span`
 
 const ContentBox = styled.div`
 	width: ${isMobile() ? "310rem" : "912rem;"};
-	height: ${isMobile() ? "120rem" : "314rem;"};
-	padding: 20rem;
+	padding: ${isMobile() ? "20rem" : "50rem"};
+	max-height: ${isMobile() ? "120rem" : "314rem"};
 	border: solid 2rem ${(props) => props.theme.colors.udemy};
 	border-radius: 20rem;
 	overflow: auto;
 	margin: ${isMobile() ? "40rem 0" : "50rem 0"};
 	display: flex;
 	justify-content: center;
-	align-items: center;
 `;
 
 const TextWrapper = styled.div`

@@ -41,7 +41,7 @@ const ErrorText = styled.span`
 `;
 
 const Wrapper = styled.div`
-	margin-top: 150rem;
+	margin-top: 180rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
