@@ -147,8 +147,6 @@ const JobPage = () => {
     };
 
     const NextPageHandler = async () => {
-        // console.log(requirements);
-        // window.localStorage.setItem("requirements", requirements!);
         document.body.style.overflow = "unset";
         await axios({
             method: "post",

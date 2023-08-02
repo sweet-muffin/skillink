@@ -22,7 +22,6 @@ const ResultPage = () => {
     const want_id = searchParams.get("id");
     const [curriculumList, setCurriculumList] =
         useState<CT.ResponseType | null>(null);
-    const requirements = window.localStorage.getItem("requirements");
     const [errorModalOn, setErrorModalOn] = useState(false);
     const [source, setSource] = useState("");
 
