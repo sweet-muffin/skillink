@@ -7,12 +7,14 @@ import { isMobile } from "@assets/mobile";
 import Spinner from "@blocks/Spinner";
 import ButtonBackground from "@assets/images/button.svg";
 import * as KF from "@styles/keyframes";
-import Swal from "sweetalert2";
+import AlertModal from "@blocks/AlertModal";
+import { resourceUsage } from "process";
 
 const ProjectPage = () => {
 	const navigate = useNavigate();
 	const [inputText, setInputText] = useState("");
 	const [isLoading, setLoading] = useState(false);
+	const [alertModal, setAlertModal] = useState(false);
 
 	const InputTextHandler = (e: {
 		target: { value: React.SetStateAction<string> };
@@ -46,13 +48,7 @@ const ProjectPage = () => {
 				});
 		};
 		if (inputText.length === 0) {
-			Swal.fire({
-				title: "잠깐만요!",
-				text: "현재 자신이 가지고 있는 기술 스택과 수준, 그리고 원하는 프로젝트를 작성해주세요.",
-				icon: "warning",
-				confirmButtonColor: "#983DE7",
-				confirmButtonText: "확인",
-			});
+			setAlertModal(true);
 		} else {
 			setLoading(true);
 			FetchStackListData();
@@ -65,12 +61,21 @@ const ProjectPage = () => {
 		}
 	};
 
+	const ModalOffHander = () => {
+		setAlertModal(false);
+	};
+
 	return (
 		<>
 			{isLoading ? (
 				<Spinner />
 			) : (
 				<Wrapper>
+					{alertModal && (
+						<>
+							<AlertModal ModalOffHander={ModalOffHander} />
+						</>
+					)}
 					<HeaderBlock />
 					<MainBox>
 						<CenterTextWrapper>
@@ -115,7 +120,6 @@ const Wrapper = styled.div`
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	/* min-width: 730px; */
 `;
 
 const MainBox = styled.div`
