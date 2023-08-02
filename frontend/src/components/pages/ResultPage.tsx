@@ -18,6 +18,7 @@ const ResultPage = () => {
 		useState<CT.ResponseType | null>(null);
 	const requirements = window.localStorage.getItem("requirements");
 	const title = window.localStorage.getItem("title");
+	const [alertModal, setAlertModal] = useState(false);
 
 	useEffect(() => {
 		const FetchData = async () => {

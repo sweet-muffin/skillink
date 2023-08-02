@@ -198,7 +198,7 @@ const TitleBox = styled.div`
 `;
 
 const SubTitle = styled.span`
-	font-size: ${isMobile() ? "23rem" : "50rem"};
+	font-size: ${isMobile() ? "25rem" : "50rem"};
 	font-family: "Pretendard-semibold";
 	align-self: center;
 	margin: ${isMobile() ? "66rem 0" : "150rem"};
@@ -270,23 +270,21 @@ const ItemWrapper = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	width: ${isMobile() ? "300rem" : "400rem"};
 	margin: ${isMobile() ? "0" : "40rem"};
 	${isMobile() && "margin-bottom: 60rem;"}
-	${css`
-		animation: ${KF.start} 0.8s 0.6s 1 both;
-	`}
 `;
 
 const ItemTitle = styled.div`
-	font-size: ${isMobile() ? "20rem" : "30rem"};
+	font-size: ${isMobile() ? "24rem" : "33rem"};
 	font-family: "Pretendard-midium";
 	align-self: center;
-	margin-top: 40rem;
-	margin-bottom: 30rem;
+	margin-top: ${isMobile() ? "30rem" : "40rem"};
+	margin-bottom: 20rem;
 `;
 
 const ItmeDesc = styled.div`
-	font-size: ${isMobile() ? "15rem" : "20rem"};
+	font-size: ${isMobile() ? "18rem" : "23rem"};
 	font-family: "Pretendard-regular";
 	align-self: center;
 	color: ${(props) => props.theme.colors.text_sub};
