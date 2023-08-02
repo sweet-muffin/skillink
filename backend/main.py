@@ -299,7 +299,7 @@ def get_curriulum_with_id(want_id: int = 0):
     user_want = result[0]
     response_dict = lesson_retrieve_with_sort(user_want)
 
-    return {"source": result[1], "lesson": response_dict}
+    return {"source": result[1], "lesson": response_dict, "user_want": user_want}
 
 
 if __name__ == "__main__":
