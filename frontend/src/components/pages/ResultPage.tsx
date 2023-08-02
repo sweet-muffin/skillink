@@ -24,6 +24,7 @@ const ResultPage = () => {
         useState<CT.ResponseType | null>(null);
     const [errorModalOn, setErrorModalOn] = useState(false);
     const [source, setSource] = useState("");
+    const [requirements, setRequirements] = useState("");
 
     useEffect(() => {
         const FetchData = async () => {
@@ -37,6 +38,7 @@ const ResultPage = () => {
                 .then((response) => {
                     setCurriculumList(response.data.lesson);
                     setSource(response.data.source);
+                    setRequirements(response.data.user_want);
                 })
                 .catch((error) => {
                     setErrorModalOn(true);
