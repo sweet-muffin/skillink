@@ -8,6 +8,13 @@ const IntroModal = (props: {
     introInfo: CT.IntroType;
     NextPageHandler: () => void;
 }) => {
+    const URLHandler = (url: string) => {
+        if (!url.includes("http")) {
+            window.open(`https://${url}`);
+        } else {
+            window.open(url);
+        }
+    };
     return (
         <ModalBackground onClick={props.ModalOffHander}>
             <ModalDiv>
@@ -27,7 +34,7 @@ const IntroModal = (props: {
                     <IntroText>{props.introInfo.intro}</IntroText>
                 </ModalTextWrapper>
                 <CompanyPageButton
-                    onClick={() => window.open(props.introInfo.companyURL!)}
+                    onClick={() => URLHandler(props.introInfo.companyURL!)}
                 >
                     회사 홈페이지로 이동하기
                 </CompanyPageButton>
