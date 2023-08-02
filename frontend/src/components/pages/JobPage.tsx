@@ -146,12 +146,23 @@ const JobPage = () => {
         setRequirements(null);
     };
 
-    const NextPageHandler = () => {
-        console.log(requirements);
-        window.localStorage.setItem("requirements", requirements!);
+    const NextPageHandler = async () => {
         document.body.style.overflow = "unset";
-        history.push("/result");
-        navigate("/result");
+        await axios({
+            method: "post",
+            url: `/api/user_want`,
+            headers: {
+                accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            data: {
+                user_want: requirements!,
+                source: "job",
+            },
+        }).then((response) => {
+            history.push(`/result?id=${response.data.want_id}`);
+            navigate(`/result?id=${response.data.want_id}`);
+        });
     };
 
     const JobChoiseAgainHandler = () => {
