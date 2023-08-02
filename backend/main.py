@@ -43,13 +43,76 @@ def create_conn():
     )
 
 
+# 우선 순위 구하기
+def get_priority(string: str) -> int:
+    keywords = [
+        ["쉬운", "기초", "입문", "처음", "모든 수준"],
+        ["실습", "실용", "심화", "알고리즘"],
+        [],
+        ["프로젝트", "자격증", "시험", "인공지능"],
+        ["실무", "실제", "전문가", "AI", " 전문"],
+    ]
+    total = 0
+    for score, keyword in enumerate(keywords):
+        total += sum([string.count(k) for k in keyword]) * (score - 2)
+    return total
+
+
 # 강의 제목으로 강의 정보 불러오기
-def get_lesson_title_list(to_do: str) -> str:
+def lesson_retrieve(to_do: str) -> str:
     res = retriever.retrieve(to_do, topk=5)
     documents = res[1]
     titles = [document.split("<@>")[0] for document in documents]
     string_list = "[" + ",".join(titles) + "]"
     return string_list
+
+
+# 강의 제목으로 강의 정보 불러오기
+def lesson_retrieve_with_sort(to_do: str) -> str:
+    res = retriever.retrieve(to_do, topk=5)
+    title_summary_list: List[str] = res[1]
+    info_list: List[dict] = res[2]
+    retrieved_list: List[List[str, dict]] = [
+        [title, info] for title, info in zip(title_summary_list, info_list)
+    ]
+    retrieved_list.sort(key=lambda x: get_priority(x[0]))
+    titles: List[str] = [
+        title_summary[0].split("<@>")[0] for title_summary in retrieved_list
+    ]
+    result_dict = {}
+    for idx, title in enumerate(titles):
+        result_dict[f"lesson{idx+1}"] = {"title": title}
+        result_dict[f"lesson{idx+1}"].update(retrieved_list[idx][1])
+
+    return result_dict
+
+
+def get_lesson_info(title_list: str):
+    mod_titles = []
+    for idx, title in enumerate(title_list):
+        mod_titles.append(f"'{title}'")
+    title_text = ", ".join(mod_titles)
+
+    conn = create_conn()
+    curs = conn.cursor()
+    curs.execute(
+        f"SELECT title, descriptions, url, image_url FROM lessons WHERE title IN ({title_text})"
+    )
+    results = curs.fetchall()
+    conn.close()
+
+    results = list(results)
+    results.sort(key=lambda x: title_list.index(x[0]))
+
+    return_data = {}
+    for idx, row in enumerate(results):
+        return_data[f"lesson{idx+1}"] = {
+            "title": row[0],
+            "descriptions": row[1],
+            "url": row[2],
+            "image_url": row[3],
+        }
+    return return_data
 
 
 # 딕셔너리 위치 찾아서 딕셔너리로 바꾸기
@@ -86,34 +149,6 @@ async def get_all_lessons() -> ReturnItem:
         )
 
     return {"lessons": lessons}
-
-
-def get_lesson_info(title_list: str):
-    mod_titles = []
-    for idx, title in enumerate(title_list):
-        mod_titles.append(f"'{title}'")
-    title_text = ", ".join(mod_titles)
-
-    conn = create_conn()
-    curs = conn.cursor()
-    curs.execute(
-        f"SELECT title, descriptions, url, image_url FROM lessons WHERE title IN ({title_text})"
-    )
-    results = curs.fetchall()
-    conn.close()
-
-    results = list(results)
-    results.sort(key=lambda x: title_list.index(x[0]))
-
-    return_data = {}
-    for idx, row in enumerate(results):
-        return_data[f"lesson{idx+1}"] = {
-            "title": row[0],
-            "descriptions": row[1],
-            "url": row[2],
-            "image_url": row[3],
-        }
-    return return_data
 
 
 # chatGPT에 필요한 기술스택과 지식 질문
@@ -163,7 +198,15 @@ def get_order_completion(prompt, model="gpt-3.5-turbo"):
 @app.post("/api/chat/curriculum")
 def get_curriulum(input: CurriculumInputItem, model="gpt-3.5-turbo"):
     # 강의 제목 Retrieve
-    lesson_title_list_string = get_lesson_title_list(input.user_want[:100])
+    response_dict = lesson_retrieve_with_sort(input.user_want)
+
+    return response_dict
+
+
+@app.post("/api/chat/curriculum_old")
+def get_curriulum_old(input: CurriculumInputItem, model="gpt-3.5-turbo"):
+    # 강의 제목 Retrieve
+    lesson_title_list_string = lesson_retrieve(input.user_want[:100])
 
     # 강의 순서 구하기
     response_string = get_order_completion(lesson_title_list_string, model)
