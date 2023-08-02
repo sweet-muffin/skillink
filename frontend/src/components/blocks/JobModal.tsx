@@ -15,7 +15,7 @@ const JobModal = (props: {
             <JobModalWrapper>
                 <JobModalText>원하는 직무를 선택해 주세요.</JobModalText>
                 <JobItemWrapper>
-                    {props.jobList!.map((job) => (
+                    {props.jobList!.slice(0, 13).map((job) => (
                         <JobItem
                             key={job.id}
                             selected={props.curJobID === job.id}
@@ -50,7 +50,7 @@ const ModalBackground = styled.div`
 
 const JobModalWrapper = styled.div`
     width: ${isMobile() ? "350rem" : "800rem"};
-    height: 700rem;
+    height: 600rem;
     flex-shrink: 0;
     border-radius: 20rem;
     background: #fff;
@@ -83,7 +83,7 @@ const JobItemWrapper = styled.div`
     width: ${isMobile() ? "300rem" : "700rem"};
     display: flex;
     justify-content: center;
-    height: 400rem;
+    height: 300rem;
     overflow: scroll;
 `;
 

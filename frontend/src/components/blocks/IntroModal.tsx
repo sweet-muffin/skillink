@@ -186,17 +186,19 @@ const LocationText = styled.span`
 
 const CloseButton = styled.div`
     position: fixed;
-    font-size: 20rem;
+    font-size: ${isMobile() ? "18rem" : "20rem"};
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: ${isMobile() ? "350rem" : "700rem"};
     transform: translate(-40rem, 10rem);
-    background: ${(props) => props.theme.colors.udemy};
+    /* background: ${(props) => props.theme.colors.udemy}; */
+    background: ${(props) => props.theme.colors.udemy_sub2};
     color: white;
+    color: black;
     width: 30rem;
     height: 30rem;
-    border-radius: 5rem;
+    border-radius: 20rem;
     cursor: pointer;
     font-family: "UbuntuCondensed";
 `;

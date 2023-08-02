@@ -136,7 +136,7 @@ const JobPage = () => {
     }
 
     const ModalOffHander = () => {
-        // history.go(-1);
+        history.go(-1);
         setIntroInfo(null);
         setRequirements(null);
     };
@@ -150,7 +150,7 @@ const JobPage = () => {
         console.log(requirements);
         window.localStorage.setItem("requirements", requirements!);
         document.body.style.overflow = "unset";
-        // history.push("/job");
+        history.push("/result");
         navigate("/result");
     };
 
