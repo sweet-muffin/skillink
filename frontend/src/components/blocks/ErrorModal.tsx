@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { isMobile } from "@assets/mobile";
 import Skillink from "@assets/images/logo.svg";
 
-const APIAlertModal = (props: { ModalOffHander: () => void }) => {
+const ErrorModal = (props: { ModalOffHander: () => void }) => {
 	return (
 		<ModalBackground>
 			<ModalDiv>
@@ -14,7 +14,7 @@ const APIAlertModal = (props: { ModalOffHander: () => void }) => {
 	);
 };
 
-export default APIAlertModal;
+export default ErrorModal;
 interface ImageSrc {
 	src: string;
 }

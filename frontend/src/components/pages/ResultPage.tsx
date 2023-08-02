@@ -12,13 +12,16 @@ import HeaderBlock from "@blocks/HeaderBlock";
 import * as CT from "@assets/customTypes";
 import { isMobile } from "@assets/mobile";
 import Spinner from "@blocks/Spinner";
+import ErrorModal from "@blocks/ErrorModal";
+import Fade from "react-reveal/Fade";
+import Zoom from "react-reveal/Zoom";
 
 const ResultPage = () => {
 	const [curriculumList, setCurriculumList] =
 		useState<CT.ResponseType | null>(null);
 	const requirements = window.localStorage.getItem("requirements");
 	const title = window.localStorage.getItem("title");
-	const [alertModal, setAlertModal] = useState(false);
+	const [errorModalOn, setErrorModalOn] = useState(false);
 
 	useEffect(() => {
 		const FetchData = async () => {
@@ -36,11 +39,21 @@ const ResultPage = () => {
 					setCurriculumList(response.data);
 				})
 				.catch((error) => {
+					setErrorModalOn(true);
 					console.log(error);
 				});
 		};
 		window.localStorage.getItem("requirements") && FetchData();
 	}, []);
+
+	const ModalOffHander = () => {
+		setErrorModalOn(false);
+		window.location.replace("/result");
+	};
+
+	if (errorModalOn) {
+		return <ErrorModal ModalOffHander={ModalOffHander} />;
+	}
 
 	return (
 		<>
@@ -76,12 +89,27 @@ const ResultPage = () => {
 							<ContentTitle>
 								{title
 									? title
-									: "해당 포지션에서 요구하는 사항은 다음과 같습니다."}
+									: "해당 포지션에서 요구하는 능력은 다음과 같습니다."}
 							</ContentTitle>
-							<ContentBox>
-								<ContentText>{requirements}</ContentText>
-							</ContentBox>
+							<Fade bottom>
+								<ContentBox>
+									<ContentText>{requirements}</ContentText>
+								</ContentBox>
+							</Fade>
 						</TitleWrapper>
+						<Text
+							css={{
+								textGradient:
+									"45deg, $purple600 0%, $blue600 120%",
+								fontFamily: "Pretendard-semibold",
+
+								fontSize: isMobile() ? "24rem" : "60rem",
+								margin: "80rem",
+								flexShrink: "0",
+							}}
+						>
+							커리큘럼
+						</Text>
 						<CurriculumBox>
 							<GradientLine />
 							<ImtemsWrapper id="lessonContainer">
@@ -111,12 +139,14 @@ const ResultPage = () => {
 								))}
 							</ImtemsWrapper>
 						</CurriculumBox>
-						<ButtonBox>
-							<ColorButtonBlock
-								navigation=""
-								comment="메인페이지로 돌아가기"
-							/>
-						</ButtonBox>
+						<Zoom>
+							<ButtonBox>
+								<ColorButtonBlock
+									navigation=""
+									comment="메인페이지로 돌아가기"
+								/>
+							</ButtonBox>
+						</Zoom>
 					</Wrapper>
 					<FooterBlock />
 				</>
@@ -148,8 +178,8 @@ const TitleWrapper = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: ${isMobile() ? "100rem 0" : "160rem 0"};
-	/* min-width: 120rem; */
+	padding-top: ${isMobile() ? "100rem" : "160rem"};
+	padding-bottom: ${isMobile() ? "0rem" : "80rem"};
 	flex-shrink: 0;
 	word-break: keep-all;
 `;
@@ -163,7 +193,6 @@ const CurriculumBox = styled.div`
 
 const GradientLine = styled.div`
 	width: 5rem;
-	// flex-grow: 1;
 	height: ${isMobile() ? "2300rem" : "3500rem;"};
 	display: flex;
 	background: linear-gradient(
@@ -191,7 +220,7 @@ const TitleText = styled.span`
 const ContentTitle = styled.span`
 	font-size: ${isMobile() ? "18rem" : "40rem"};
 	font-family: "Pretendard-midium";
-	margin-top: 100rem;
+	margin-top: ${isMobile() ? "100rem" : "180rem"};
 `;
 
 const ContentText = styled.span`
@@ -206,11 +235,9 @@ const ContentBox = styled.div`
 	height: ${isMobile() ? "120rem" : "314rem;"};
 	padding: 20rem;
 	border: solid 2rem ${(props) => props.theme.colors.udemy};
-	/* background-color: white; */
 	border-radius: 20rem;
-	overflow-y: scroll;
+	overflow: auto;
 	margin: ${isMobile() ? "40rem 0" : "50rem 0"};
-	/* box-shadow: 5rem 5rem 5rem 0rem rgba(0, 0, 0, 0.1); */
 	display: flex;
 	justify-content: center;
 	align-items: center;
