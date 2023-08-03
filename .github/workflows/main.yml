@@ -86,4 +86,4 @@ jobs:
                   docker stop ${{ secrets.API_APP }} && docker rm ${{ secrets.API_APP }} && docker rmi ${{ env.BACKEND_IMAGE }}:latest
                   docker pull ${{ env.FRONTEND_IMAGE }}:latest && docker pull ${{ env.BACKEND_IMAGE }}:latest
                   cd ~
-                  docker-compose -f docker_compose.prod.yml up -d
+                  docker-compose -f docker-compose.prod.yml up -d
