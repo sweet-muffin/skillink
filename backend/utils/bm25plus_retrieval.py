@@ -45,6 +45,20 @@ def get_all_lessons():
     return lessons
 
 
+def get_all_lesson_info():
+    conn = create_conn()
+    curs = conn.cursor()
+    curs.execute("SELECT descriptions, url, image_url FROM lessons")
+    results = curs.fetchall()
+    conn.close()
+
+    info = []
+    for row in results:
+        info.append({"descriptions": row[0], "url": row[1], "image_url": row[2]})
+
+    return info
+
+
 class BM25PlusRetriever:
     def __init__(
         self,
@@ -59,15 +73,21 @@ class BM25PlusRetriever:
         self.bm25plus = None
 
         context_path = os.path.join(BASE_PATH + "/context.bin")
+        info_path = os.path.join(BASE_PATH + "/info.bin")
 
         # context 미리 토큰화
-        if os.path.isfile(context_path):
+        if os.path.isfile(context_path) and os.path.isfile(info_path):
             with open(context_path, "rb") as file:
                 self.contexts = pickle.load(file)
+            with open(info_path, "rb") as file:
+                self.infos = pickle.load(file)
         else:
             self.contexts = get_all_lessons()
+            self.infos = get_all_lesson_info()
             with open(context_path, "wb") as f:
                 pickle.dump(self.contexts, f)
+            with open(info_path, "wb") as f:
+                pickle.dump(self.infos, f)
 
         self.tokenized_contexts = []
         for doc in tqdm(self.contexts, desc="Tokenizing context"):
@@ -85,6 +105,7 @@ class BM25PlusRetriever:
         return (
             doc_scores,
             [self.contexts[doc_indices[i]] for i in range(topk)],
+            [self.infos[doc_indices[i]] for i in range(topk)],
         )
 
     def get_relevant_doc(self, query: str, k: Optional[int] = 1) -> Tuple[List, List]:
