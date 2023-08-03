@@ -167,7 +167,7 @@ const Wrapper = styled.div`
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	min-width: 730px;
+	min-width: 710px;
 	${isMobile() && "min-width:0px;"}
 `;
 
@@ -243,8 +243,10 @@ const ItemBox = styled.div`
 	border-radius: 20rem;
 	width: ${isMobile() ? "350rem" : "450rem"};
 	height: ${isMobile() ? "109rem" : "230rem"};
-
 	${isMobile() ? "margin-bottom:30rem;" : "margin: 15rem;"}
+	@media screen and (max-width: 1110px) {
+		width: ${isMobile() ? "350rem" : "780rem"};
+	}
 `;
 
 const ItemText = styled.span`
@@ -259,7 +261,7 @@ const ItemsWrapper = styled.div`
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	@media screen and (max-width: 800px) {
+	@media screen and (max-width: 1110px) {
 		flex-direction: column;
 	}
 	${isMobile() && "width:250rem;"}
@@ -311,9 +313,6 @@ const ImageBox = styled.div`
 	align-items: center;
 	height: ${isMobile() ? "100rem" : "200rem"};
 	margin: 20rem;
-	@media screen and (max-width: 800px) {
-		margin: 50rem;
-	}
 `;
 
 const ButtonBox = styled.div`
