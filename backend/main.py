@@ -199,9 +199,13 @@ def get_summary_completion(prompt, model="gpt-3.5-turbo"):
     messages = [
         {
             "role": "system",
-            "content": "다음을 불렛 형식으로 한 줄당 18자 이내로 깔끔하게 정리해줘.",
+            "content": "다음을 불렛 형식으로, 한 불렛당 글자 25자 이내로, 불렛은 7개 이내로 짧고 깔끔하게 정리해줘.",
         },
         {"role": "user", "content": prompt},
+        {
+            "role": "assistant",
+            "content": "- 설명1\n- 설명2\n- 설명3\n- 설명4\n- 설명5\n- 설명6\n- 설명7",
+        },
     ]
     response = openai.ChatCompletion.create(
         model=model,

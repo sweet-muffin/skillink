@@ -87,8 +87,10 @@ const JobPage = () => {
     };
 
     const JobNextHandler = () => {
-        setPositionModal(false);
-        FetchPositionData();
+        if (curJobID !== -1) {
+            setPositionModal(false);
+            FetchPositionData();
+        }
     };
 
     const PositionSelectHandler = (
@@ -160,7 +162,7 @@ const JobPage = () => {
                 source: "job",
             },
         }).then((response) => {
-            history.push(`/result?id=${response.data.want_id}`);
+            // history.push(`/result?id=${response.data.want_id}`);
             navigate(`/result?id=${response.data.want_id}`);
         });
     };
@@ -189,6 +191,7 @@ const JobPage = () => {
             {introInfo && (
                 <IntroModal
                     ModalOffHander={ModalOffHander}
+                    ModalBackHander={ModalBackHander}
                     introInfo={introInfo!}
                     NextPageHandler={NextPageHandler}
                 />
