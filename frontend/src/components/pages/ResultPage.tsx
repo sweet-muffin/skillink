@@ -90,9 +90,15 @@ const ResultPage = () => {
                                 흥미진진한 학습을 시작해보세요!
                             </TitleText>
                             <ContentTitle>
-                                {source === "project"
-                                    ? "프로젝트를 수행하기 위해서는 다음과 같은 스택과 지식이 필요합니다."
-                                    : "해당 포지션에서 요구하는 능력은 다음과 같습니다."}
+                                {source === "project" ? (
+                                    <>
+                                        프로젝트를 수행하기 위해서는
+                                        <br />
+                                        다음과 같은 스택과 지식이 필요합니다.
+                                    </>
+                                ) : (
+                                    "해당 포지션에서 요구하는 능력은 다음과 같습니다."
+                                )}
                             </ContentTitle>
                             <Fade bottom>
                                 <ContentBox>
@@ -232,12 +238,13 @@ const ContentText = styled.span`
     text-align: start;
     background-color: transparent;
     white-space: pre-line;
-    width: 90%;
+    width: 95%;
+    word-break: keep-all;
 `;
 
 const ContentBox = styled.div`
     width: ${isMobile() ? "310rem" : "870rem;"};
-    padding: ${isMobile() ? "20rem" : "40rem 20rem"};
+    padding: ${isMobile() ? "20rem 10rem" : "40rem 20rem"};
     max-height: ${isMobile() ? "120rem" : "314rem"};
     border: solid 2rem ${(props) => props.theme.colors.udemy};
     border-radius: 20rem;
