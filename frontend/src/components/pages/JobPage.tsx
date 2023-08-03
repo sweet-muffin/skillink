@@ -203,13 +203,16 @@ const JobPage = () => {
 			<HeaderBlock />
 			{positionList.length !== 0 ? (
 				<Wrapper>
-					<TopPositionDiv>
-						<TopPositionText onClick={JobChoiseAgainHandler}>
-							{jobTitle}&nbsp;&nbsp;
-							<SmallText>X</SmallText>
-						</TopPositionText>
-					</TopPositionDiv>
 					<PositionWrapper>
+						<TopPositionDiv>
+							<TopPositionText onClick={JobChoiseAgainHandler}>
+								{jobTitle}&nbsp;&nbsp;
+								<SmallText>X</SmallText>
+							</TopPositionText>
+						</TopPositionDiv>
+						<TopPositionDiv></TopPositionDiv>
+						<TopPositionDiv1></TopPositionDiv1>
+						<TopPositionDiv2></TopPositionDiv2>
 						{positionList.map((position) => (
 							<PositionElement key={position.id}>
 								<PositionIMG
@@ -275,8 +278,7 @@ const PositionWrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	min-width: ${isMobile() ? "0rem" : "800rem"};
-	width: ${isMobile() ? "100vw" : "62.5vw"};
-	/* margin-top: ${isMobile() ? "0rem" : "113rem"}; */
+	width: ${isMobile() ? "100vw" : "75%"};
 	justify-content: center;
 `;
 
@@ -377,19 +379,39 @@ const MoreButton = styled.div<{
 
 const TopPositionDiv = styled.div`
 	margin-top: ${isMobile() ? "18rem" : "18rem"};
-	min-width: ${isMobile() ? "0rem" : "800rem"};
-	width: ${isMobile() ? "100vw" : "62.5vw"};
+	width: ${isMobile() ? "170rem" : "300rem"};
+	margin: ${isMobile() ? "0rem 8rem" : "0rem 45rem"};
 	text-align: left;
 	display: flex;
+`;
+const TopPositionDiv1 = styled.div`
+	margin-top: ${isMobile() ? "18rem" : "18rem"};
+	width: ${isMobile() ? "170rem" : "300rem"};
+	margin: ${isMobile() ? "0rem 8rem" : "0rem 45rem"};
+	text-align: left;
+	display: flex;
+	@media screen and (max-width: 1592px) {
+		display: none;
+	}
+`;
+const TopPositionDiv2 = styled.div`
+	margin-top: ${isMobile() ? "18rem" : "18rem"};
+	width: ${isMobile() ? "170rem" : "300rem"};
+	margin: ${isMobile() ? "0rem 8rem" : "0rem 45rem"};
+	text-align: left;
+	display: flex;
+	@media screen and (max-width: 1194px) {
+		display: none;
+	}
 `;
 
 const TopPositionText = styled.div`
 	padding: 0 20rem;
 	height: ${isMobile() ? "50rem" : "61rem"};
 	flex-shrink: 0;
+	margin-top: ${isMobile() ? "15rem" : "18rem"};
 	border-radius: ${isMobile() ? "15rem" : "20rem"};
 	background-color: #6bddaa;
-	margin: ${isMobile() ? "0 16rem" : "0 45rem"};
 	display: flex;
 	align-items: center;
 	justify-content: center;
