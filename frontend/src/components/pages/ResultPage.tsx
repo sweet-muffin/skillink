@@ -113,7 +113,7 @@ const ResultPage = () => {
 								fontFamily: "Pretendard-semibold",
 
 								fontSize: isMobile() ? "24rem" : "60rem",
-								margin: "80rem",
+								margin: "40rem",
 								flexShrink: "0",
 							}}
 						>
@@ -190,7 +190,6 @@ const TitleWrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 	padding-top: ${isMobile() ? "100rem" : "160rem"};
-	padding-bottom: ${isMobile() ? "0rem" : "80rem"};
 	flex-shrink: 0;
 	word-break: keep-all;
 `;
@@ -231,7 +230,7 @@ const TitleText = styled.span`
 const ContentTitle = styled.span`
 	font-size: ${isMobile() ? "18rem" : "40rem"};
 	font-family: "Pretendard-midium";
-	margin-top: ${isMobile() ? "100rem" : "180rem"};
+	margin-top: ${isMobile() ? "100rem" : "120rem"};
 `;
 
 const ContentText = styled.span`
@@ -245,9 +244,9 @@ const ContentText = styled.span`
 `;
 
 const ContentBox = styled.div`
-	width: ${isMobile() ? "310rem" : "870rem"};
+	width: ${isMobile() ? "310rem" : "950rem"};
 	padding: ${isMobile() ? "20rem 10rem" : "40rem 20rem"};
-	max-height: ${isMobile() ? "120rem" : "314rem"};
+	max-height: ${isMobile() ? "120rem" : "240rem"};
 	border: solid 2rem ${(props) => props.theme.colors.udemy};
 	border-radius: 20rem;
 	overflow: auto;

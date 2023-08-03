@@ -10,7 +10,6 @@ import openai
 from collections import defaultdict
 from model import *
 import requests
-import ast
 
 
 load_dotenv()
