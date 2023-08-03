@@ -376,8 +376,7 @@ const MoreButton = styled.div<{
 `;
 
 const TopPositionDiv = styled.div`
-	margin-top: ${isMobile() ? "18rem" : "18rem"};
-	margin: ${isMobile() ? "0rem 8rem" : "0rem 45rem"};
+	margin: ${isMobile() ? "10rem 0" : "15rem 0"};
 	text-align: center;
 	display: flex;
 `;
