@@ -103,7 +103,7 @@ const ProjectPage = () => {
 						</CenterTextWrapper>
 						<InputBox
 							onKeyPress={EnterHandler}
-							maxLength={99}
+							maxLength={100}
 							onChange={InputTextHandler}
 							placeholder="난 자바스크립트만 조금 할 줄 아는 초보 개발자인데, 내 웹사이트를 제작하고 싶어."
 						/>

@@ -243,8 +243,10 @@ const ItemBox = styled.div`
 	border-radius: 20rem;
 	width: ${isMobile() ? "350rem" : "450rem"};
 	height: ${isMobile() ? "109rem" : "230rem"};
-
 	${isMobile() ? "margin-bottom:30rem;" : "margin: 15rem;"}
+	@media screen and (max-width: 1110px) {
+		width: ${isMobile() ? "350rem" : "780rem"};
+	}
 `;
 
 const ItemText = styled.span`
@@ -259,7 +261,7 @@ const ItemsWrapper = styled.div`
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	@media screen and (max-width: 1000px) {
+	@media screen and (max-width: 1110px) {
 		flex-direction: column;
 	}
 	${isMobile() && "width:250rem;"}

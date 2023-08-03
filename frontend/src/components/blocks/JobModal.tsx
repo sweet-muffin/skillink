@@ -5,148 +5,148 @@ import button_back from "@assets/images/button.svg";
 import * as KF from "@styles/keyframes";
 
 const JobModal = (props: {
-    jobList: CT.JobType[] | null;
-    curJobID: number;
-    JobSelectHander: (jobID: number, jobTitle: string) => void;
-    JobNextHandler: () => void;
+	jobList: CT.JobType[] | null;
+	curJobID: number;
+	JobSelectHander: (jobID: number, jobTitle: string) => void;
+	JobNextHandler: () => void;
 }) => {
-    return (
-        <ModalBackground>
-            <JobModalWrapper>
-                <JobModalText>원하는 직무를 선택해 주세요.</JobModalText>
-                <JobItemWrapper>
-                    {props.jobList!.slice(0, 13).map((job) => (
-                        <JobItem
-                            key={job.id}
-                            selected={props.curJobID === job.id}
-                            onClick={() =>
-                                props.JobSelectHander(job.id, job.title)
-                            }
-                        >
-                            {job.title}
-                        </JobItem>
-                    ))}
-                </JobItemWrapper>
-                <JobNextButton
-                    jobid={props.curJobID}
-                    src={button_back}
-                    onClick={props.JobNextHandler}
-                >
-                    포지션 보러가기
-                </JobNextButton>
-            </JobModalWrapper>
-        </ModalBackground>
-    );
+	return (
+		<ModalBackground>
+			<JobModalWrapper>
+				<JobModalText>원하는 직무를 선택해 주세요.</JobModalText>
+				<JobItemWrapper>
+					{props.jobList!.slice(0, 13).map((job) => (
+						<JobItem
+							key={job.id}
+							selected={props.curJobID === job.id}
+							onClick={() =>
+								props.JobSelectHander(job.id, job.title)
+							}
+						>
+							{job.title}
+						</JobItem>
+					))}
+				</JobItemWrapper>
+				<JobNextButton
+					jobid={props.curJobID}
+					src={button_back}
+					onClick={props.JobNextHandler}
+				>
+					포지션 보러가기
+				</JobNextButton>
+			</JobModalWrapper>
+		</ModalBackground>
+	);
 };
 
 export default JobModal;
 
 const ModalBackground = styled.div`
-    position: fixed;
-    background: rgba(184, 184, 184, 0.47);
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
+	position: fixed;
+	background: rgba(184, 184, 184, 0.47);
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
 `;
 
 const JobModalWrapper = styled.div`
-    width: ${isMobile() ? "350rem" : "800rem"};
-    height: 600rem;
-    flex-shrink: 0;
-    border-radius: 20rem;
-    background: #fff;
-    box-shadow: 5rem 5rem 5rem 0rem rgba(0, 0, 0, 0.1);
+	width: ${isMobile() ? "350rem" : "800rem"};
+	height: 600rem;
+	flex-shrink: 0;
+	border-radius: 20rem;
+	background: #fff;
+	box-shadow: 5rem 5rem 5rem 0rem rgba(0, 0, 0, 0.1);
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    // justify-content: center;
-    ${css`
-        animation: ${KF.start} 0.8s 0.4s 1 both;
-    `}
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	// justify-content: center;
+	${css`
+		animation: ${KF.start} 0.8s 0.4s 1 both;
+	`}
 `;
 
 const JobModalText = styled.div`
-    color: #000;
-    text-align: center;
-    font-family: Pretendard;
-    font-size: ${isMobile() ? "24rem" : "35rem"};
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+	color: #000;
+	text-align: center;
+	font-family: Pretendard;
+	font-size: ${isMobile() ? "24rem" : "35rem"};
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
 
-    margin-top: 72rem;
-    margin-bottom: 50rem;
+	margin-top: 72rem;
+	margin-bottom: 50rem;
 `;
 
 const JobItemWrapper = styled.div`
-    flex-wrap: wrap;
-    width: ${isMobile() ? "300rem" : "700rem"};
-    display: flex;
-    justify-content: center;
-    height: 300rem;
-    overflow: scroll;
+	flex-wrap: wrap;
+	width: ${isMobile() ? "290rem" : "700rem"};
+	display: flex;
+	justify-content: center;
+	height: 315rem;
+	overflow: scroll;
 `;
 
 interface ItemType {
-    selected: boolean;
+	selected: boolean;
 }
 
 const JobItem = styled.div<ItemType>`
-    border-radius: 20rem;
-    background: ${(props) => (props.selected ? "white" : "#f2f4f7")};
-    border: ${(props) =>
-        props.selected ? "2rem solid var(--udemy-sub-1, #5027C8)" : "0px"};
+	border-radius: 20rem;
+	background: ${(props) => (props.selected ? "white" : "#f2f4f7")};
+	border: ${(props) =>
+		props.selected ? "2rem solid var(--udemy-sub-1, #5027C8)" : "0px"};
 
-    height: ${(props) => (props.selected ? "41rem" : "45rem")};
-    padding: 0
-        ${(props) =>
-            props.selected
-                ? isMobile()
-                    ? "28rem"
-                    : "38rem"
-                : isMobile()
-                ? "30rem"
-                : "40rem"};
+	height: ${(props) => (props.selected ? "41rem" : "45rem")};
+	padding: 0
+		${(props) =>
+			props.selected
+				? isMobile()
+					? "28rem"
+					: "38rem"
+				: isMobile()
+				? "30rem"
+				: "40rem"};
 
-    flex-shrink: 0;
-    color: ${(props) =>
-        props.selected ? "var(--udemy-sub-1, #5027C8)" : "#000"};
-    text-align: center;
-    font-family: Pretendard;
-    font-size: ${isMobile() ? "17rem" : "20rem"};
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15rem;
-    margin-bottom: 15rem;
-    cursor: pointer;
+	flex-shrink: 0;
+	color: ${(props) =>
+		props.selected ? "var(--udemy-sub-1, #5027C8)" : "#000"};
+	text-align: center;
+	font-family: Pretendard;
+	font-size: ${isMobile() ? "17rem" : "20rem"};
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+	display: flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin-right: 15rem;
+	margin-bottom: 15rem;
+	cursor: pointer;
 `;
 
 interface CardType {
-    src: string;
-    jobid: number;
+	src: string;
+	jobid: number;
 }
 
 const JobNextButton = styled.button<CardType>`
-    font-size: ${isMobile() ? "22rem" : "28rem"};
-    font-family: "Pretendard-semibold";
-    align-items: center;
-    border-radius: 20rem;
-    background-color: transparent;
-    border: transparent;
-    color: white;
-    width: ${isMobile() ? "310rem" : "360rem"};
-    height: ${isMobile() ? "50rem" : "70rem"};
-    background-image: url(${(props) => props.src});
-    margin-top: 32rem;
+	font-size: ${isMobile() ? "22rem" : "28rem"};
+	font-family: "Pretendard-semibold";
+	align-items: center;
+	border-radius: 20rem;
+	background-color: transparent;
+	border: transparent;
+	color: white;
+	width: ${isMobile() ? "310rem" : "360rem"};
+	height: ${isMobile() ? "50rem" : "70rem"};
+	background-image: url(${(props) => props.src});
+	margin-top: 32rem;
 
-    opacity: ${(props) => (props.jobid === -1 ? "0.3" : "1; cursor: pointer")};
+	opacity: ${(props) => (props.jobid === -1 ? "0.3" : "1; cursor: pointer")};
 `;
