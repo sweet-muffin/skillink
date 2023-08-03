@@ -87,8 +87,10 @@ const JobPage = () => {
     };
 
     const JobNextHandler = () => {
-        setPositionModal(false);
-        FetchPositionData();
+        if (curJobID !== -1) {
+            setPositionModal(false);
+            FetchPositionData();
+        }
     };
 
     const PositionSelectHandler = (

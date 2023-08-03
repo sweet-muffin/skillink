@@ -27,7 +27,11 @@ const JobModal = (props: {
                         </JobItem>
                     ))}
                 </JobItemWrapper>
-                <JobNextButton src={button_back} onClick={props.JobNextHandler}>
+                <JobNextButton
+                    jobid={props.curJobID}
+                    src={button_back}
+                    onClick={props.JobNextHandler}
+                >
                     포지션 보러가기
                 </JobNextButton>
             </JobModalWrapper>
@@ -128,6 +132,7 @@ const JobItem = styled.div<ItemType>`
 
 interface CardType {
     src: string;
+    jobid: number;
 }
 
 const JobNextButton = styled.button<CardType>`
@@ -142,5 +147,6 @@ const JobNextButton = styled.button<CardType>`
     height: ${isMobile() ? "50rem" : "70rem"};
     background-image: url(${(props) => props.src});
     margin-top: 32rem;
-    cursor: pointer;
+
+    opacity: ${(props) => (props.jobid === -1 ? "0.3" : "1; cursor: pointer")};
 `;
