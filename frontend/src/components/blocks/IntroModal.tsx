@@ -5,6 +5,7 @@ import * as CT from "@assets/customTypes";
 
 const IntroModal = (props: {
     ModalOffHander: () => void;
+    ModalBackHander: () => void;
     introInfo: CT.IntroType;
     NextPageHandler: () => void;
 }) => {
@@ -18,7 +19,7 @@ const IntroModal = (props: {
     return (
         <ModalBackground onClick={props.ModalOffHander}>
             <ModalDiv>
-                <CloseButton onClick={props.ModalOffHander}>X</CloseButton>
+                <CloseButton onClick={props.ModalBackHander}>X</CloseButton>
                 <ModalIMG src={props.introInfo.detailURL} alt="" />
                 <ModalTextWrapper>
                     <PositionName>{props.introInfo.positionName}</PositionName>
