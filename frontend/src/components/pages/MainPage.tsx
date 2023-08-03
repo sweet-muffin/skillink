@@ -167,7 +167,7 @@ const Wrapper = styled.div`
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	min-width: 730px;
+	min-width: 710px;
 	${isMobile() && "min-width:0px;"}
 `;
 
@@ -259,7 +259,7 @@ const ItemsWrapper = styled.div`
 	flex-direction: row;
 	justify-content: space-around;
 	align-items: center;
-	@media screen and (max-width: 800px) {
+	@media screen and (max-width: 1000px) {
 		flex-direction: column;
 	}
 	${isMobile() && "width:250rem;"}
@@ -311,9 +311,6 @@ const ImageBox = styled.div`
 	align-items: center;
 	height: ${isMobile() ? "100rem" : "200rem"};
 	margin: 20rem;
-	@media screen and (max-width: 800px) {
-		margin: 50rem;
-	}
 `;
 
 const ButtonBox = styled.div`
