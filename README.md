@@ -19,9 +19,9 @@ SKILLINK는 원하는 프로젝트 목표를 알려주거나, 원하는 직무�
 - [대회영상](https://www.youtube.com/watch?v=DBP6pfRRWnQ&t=43) 보러가기
 
 ## 📍 Target
+다음과 같은 고민들을 해본 여러분들을 돕기 위하여 서비스를 고안하게 되었습니다.
+</br>
 <img width="748" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/0969aefa-8d43-4010-9048-41bd70074a28">  
-
-위와 같은 고민들을 해본 여러분들을 돕기 위하여 서비스를 고안하게 되었습니다.
 
 ## 📑 프로젝트 목표로 커리큘럼 추천받기
 원하는 프로젝트를 작성해주시면, 그에 맞는 기술 스택을 추천해드립니다.  
@@ -33,7 +33,15 @@ SKILLINK는 원하는 프로젝트 목표를 알려주거나, 원하는 직무�
 원하는 직무를 선택하면, 해당 직무에 대한 채용 공고를 확인하고 선택할 수 있습니다.  
 </br>
 
+<img width="205" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/224a71dd-27d9-4954-86d2-aa6340af976f">  <img width="700" alt="KakaoTalk_Photo_2023-10-15-02-38-59" src="https://github.com/sweet-muffin/skillink/assets/82494506/cd76e1fc-960b-4542-83cf-343d5e94579b">
+
+
+
 ## 🎯 커리큘럼 추천
+필요한 능력 혹은 기술 스택 정보와 함께 강의 커리큘럼이 제공됩니다.  
+</br>
+
+<img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/38b8233f-89a2-4b77-91e4-b9ecf478df7f">  <img width="450" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/1bf0e44f-7f49-43c6-972f-922320d2a352">
 
 
 
