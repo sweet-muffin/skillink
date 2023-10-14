@@ -47,12 +47,7 @@ SKILLINK는 원하는 프로젝트 목표를 알려주거나, 원하는 직무�
 
 ## 🗂 팜플렛
 
-<img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/96380cb1-996f-424a-801f-e1620c712da5">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/f5319e16-45c2-4f20-b477-8121786de6d6">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/81e90ea9-ebbd-4a80-bc86-5535b805426a">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/63ce5437-a2c3-49c7-a79f-5cbd139275b6">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/c6dd82e3-ba83-403a-bbfe-c3fcf2adbf7a">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/1c28ef57-e85e-46ea-88c4-c4f7ac83056c">
-
-
-
-
-
+<img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/679143c4-72ba-4839-aff5-7792dceac652">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/4b8c13e6-c6f4-4b3e-8daf-061952a7cb48"> <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/dd6fe219-d6c7-47e1-93f7-1c322b396488"> <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/e9a6b840-2328-475c-911a-f0895722a3e3"> <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/383c57a4-a4ae-42ac-92f5-f9900e3e8dfa"> <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/0de87926-e367-42ac-954c-61bd074734e0">
 
 
 # 🏠 Member
