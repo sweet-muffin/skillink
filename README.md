@@ -29,13 +29,11 @@ SKILLINK는 원하는 프로젝트 목표를 알려주거나, 원하는 직무�
 
 <img width="180" alt="3-1  프로젝트" src="https://github.com/sweet-muffin/skillink/assets/82494506/4faf513d-efde-499f-b9f9-5b2e9b5aca4d">   <img width="700" alt="3-1  프로젝트" src="https://github.com/sweet-muffin/skillink/assets/82494506/5d01cb48-ba61-413b-b759-5df6fa3e34d2">  
 
-## 🗂️ 직무에 대한 채용 공고로 커리큘럼 추천받기
+## 📋 직무에 대한 채용 공고로 커리큘럼 추천받기
 원하는 직무를 선택하면, 해당 직무에 대한 채용 공고를 확인하고 선택할 수 있습니다.  
 </br>
 
 <img width="205" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/224a71dd-27d9-4954-86d2-aa6340af976f">  <img width="700" alt="KakaoTalk_Photo_2023-10-15-02-38-59" src="https://github.com/sweet-muffin/skillink/assets/82494506/cd76e1fc-960b-4542-83cf-343d5e94579b">
-
-
 
 ## 🎯 커리큘럼 추천
 필요한 능력 혹은 기술 스택 정보와 함께 강의 커리큘럼이 제공됩니다.  
@@ -43,9 +41,19 @@ SKILLINK는 원하는 프로젝트 목표를 알려주거나, 원하는 직무�
 
 <img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/38b8233f-89a2-4b77-91e4-b9ecf478df7f">  <img width="450" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/1bf0e44f-7f49-43c6-972f-922320d2a352">
 
+## 🗂 팜플렛
+
+<img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/96380cb1-996f-424a-801f-e1620c712da5">  <img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/f5319e16-45c2-4f20-b477-8121786de6d6">  <img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/81e90ea9-ebbd-4a80-bc86-5535b805426a">  
+
+<img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/63ce5437-a2c3-49c7-a79f-5cbd139275b6">  <img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/c6dd82e3-ba83-403a-bbfe-c3fcf2adbf7a">  <img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/1c28ef57-e85e-46ea-88c4-c4f7ac83056c">
 
 
-## 🏠 Member
+
+
+
+
+
+# 🏠 Member
 
 ### 2023 AI HACKATHON, Muffin
 
