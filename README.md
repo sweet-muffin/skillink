@@ -19,9 +19,18 @@ SKILLINK는 원하는 프로젝트 목표를 알려주거나, 원하는 직무�
 - [발표자료] 보러가기
 - [대회영상](https://www.youtube.com/watch?v=DBP6pfRRWnQ&t=43) 보러가기
 
+## 📍 
+<img width="748" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/0969aefa-8d43-4010-9048-41bd70074a28">  
+
+위와 같은 고민들을 해본 여러분들을 돕기 위하여 서비스를 고안하게 되었습니다.
+
+## 📑 프로젝트 목표로 커리큘럼 추천받기
+<img width="200" alt="3-1  프로젝트" src="https://github.com/sweet-muffin/skillink/assets/82494506/4faf513d-efde-499f-b9f9-5b2e9b5aca4d">   <img width="750" alt="3-1  프로젝트" src="https://github.com/sweet-muffin/skillink/assets/82494506/5d01cb48-ba61-413b-b759-5df6fa3e34d2">
+
+## 🗂️ 직무에 대한 채용 공고로 커리큘럼 추천받기
 
 
-## 📍 Member
+## 🏠 Member
 
 ### 2023 AI HACKATHON, Muffin
 
