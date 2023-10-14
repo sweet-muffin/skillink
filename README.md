@@ -12,6 +12,8 @@
 <br>
 
 ## 📍 Introduction
+<img width="946" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/35c99a78-19df-466f-b8cd-5457240cb91d">  
+
 Udemy 큐레이션, wanted, 조코딩이 주최한 본 대회는 AI 기술을 활용하여 웹/앱 서비스를 만드는 것을 목적으로 하였습니다.
 SKILLINK는 원하는 프로젝트 목표를 알려주거나, 원하는 직무에 대한 채용 공고를 선택하면, 그에 맞는 학습 커리큘럼을 추천해주는 서비스입니다.
 
@@ -43,9 +45,7 @@ SKILLINK는 원하는 프로젝트 목표를 알려주거나, 원하는 직무�
 
 ## 🗂 팜플렛
 
-<img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/96380cb1-996f-424a-801f-e1620c712da5">  <img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/f5319e16-45c2-4f20-b477-8121786de6d6">  <img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/81e90ea9-ebbd-4a80-bc86-5535b805426a">  
-
-<img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/63ce5437-a2c3-49c7-a79f-5cbd139275b6">  <img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/c6dd82e3-ba83-403a-bbfe-c3fcf2adbf7a">  <img width="200" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/1c28ef57-e85e-46ea-88c4-c4f7ac83056c">
+<img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/96380cb1-996f-424a-801f-e1620c712da5">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/f5319e16-45c2-4f20-b477-8121786de6d6">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/81e90ea9-ebbd-4a80-bc86-5535b805426a">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/63ce5437-a2c3-49c7-a79f-5cbd139275b6">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/c6dd82e3-ba83-403a-bbfe-c3fcf2adbf7a">  <img width="130" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/1c28ef57-e85e-46ea-88c4-c4f7ac83056c">
 
 
 
