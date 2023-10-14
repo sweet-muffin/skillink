@@ -27,13 +27,13 @@ SKILLINK는 원하는 프로젝트 목표를 알려주거나, 원하는 직무�
 원하는 프로젝트를 작성해주시면, 그에 맞는 기술 스택을 추천해드립니다.  
 <br>
 
-<img width="180" alt="3-1  프로젝트" src="https://github.com/sweet-muffin/skillink/assets/82494506/4faf513d-efde-499f-b9f9-5b2e9b5aca4d">   <img width="700" alt="3-1  프로젝트" src="https://github.com/sweet-muffin/skillink/assets/82494506/5d01cb48-ba61-413b-b759-5df6fa3e34d2">  
+<img width="150" alt="3-1  프로젝트" src="https://github.com/sweet-muffin/skillink/assets/82494506/4faf513d-efde-499f-b9f9-5b2e9b5aca4d">   <img width="550" alt="3-1  프로젝트" src="https://github.com/sweet-muffin/skillink/assets/82494506/5d01cb48-ba61-413b-b759-5df6fa3e34d2">  
 
 ## 📋 직무에 대한 채용 공고로 커리큘럼 추천받기
 원하는 직무를 선택하면, 해당 직무에 대한 채용 공고를 확인하고 선택할 수 있습니다.  
 </br>
 
-<img width="205" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/224a71dd-27d9-4954-86d2-aa6340af976f">  <img width="700" alt="KakaoTalk_Photo_2023-10-15-02-38-59" src="https://github.com/sweet-muffin/skillink/assets/82494506/cd76e1fc-960b-4542-83cf-343d5e94579b">
+<img width="165" alt="image" src="https://github.com/sweet-muffin/skillink/assets/82494506/224a71dd-27d9-4954-86d2-aa6340af976f">  <img width="550" alt="KakaoTalk_Photo_2023-10-15-02-38-59" src="https://github.com/sweet-muffin/skillink/assets/82494506/cd76e1fc-960b-4542-83cf-343d5e94579b">
 
 ## 🎯 커리큘럼 추천
 필요한 능력 혹은 기술 스택 정보와 함께 강의 커리큘럼이 제공됩니다.  
